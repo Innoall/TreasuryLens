@@ -1,0 +1,19 @@
+[package]
+name = "treasurylens-test"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[lib]
+path = "../treasurylens/src/lib.rs"
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["test-controls"]
+test-controls = []
+
+[dependencies]
+lyquid.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+treasurylens-core.workspace = true
