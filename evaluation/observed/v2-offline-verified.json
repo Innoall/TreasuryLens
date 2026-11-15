@@ -1,0 +1,86 @@
+{
+  "audit": {
+    "blocks": [
+      {
+        "block_number": 7,
+        "count": 1,
+        "total": "1250000"
+      },
+      {
+        "block_number": 8,
+        "count": 1,
+        "total": "2500000"
+      },
+      {
+        "block_number": 9,
+        "count": 1,
+        "total": "3750000"
+      }
+    ],
+    "recipients": [
+      {
+        "address": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+        "count": 1,
+        "share_bps": 5000,
+        "total": "3750000"
+      },
+      {
+        "address": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+        "count": 1,
+        "share_bps": 3333,
+        "total": "2500000"
+      },
+      {
+        "address": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "count": 1,
+        "share_bps": 1666,
+        "total": "1250000"
+      }
+    ],
+    "self_transfer_count": 0,
+    "self_transfer_total": "0",
+    "summary": {
+      "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+      "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+      "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+      "total": "7500000",
+      "transfer_count": 3
+    },
+    "top_recipient_share_bps": 5000,
+    "transfers": [
+      {
+        "amount": "1250000",
+        "block_hash": "0x800571d5a9394cea123facc3885d7063faa42b2f6e54dac23054d3599e394570",
+        "block_number": 7,
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "log_index": 0,
+        "to": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "token": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "transaction_hash": "0x449cd1dde7f7e363c1e1a13a4c0f7868a73af445942f2034feb9ce34a89e7a0f"
+      },
+      {
+        "amount": "2500000",
+        "block_hash": "0xb0a802108fdc29cab05bc56b97a632178b5b3219276bd91470367ba3139c2dad",
+        "block_number": 8,
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "log_index": 0,
+        "to": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+        "token": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "transaction_hash": "0x1f143aad26dc3c3d5daf6356728f069db8f7a8c8b020f6fb74dd30bc4eb554c3"
+      },
+      {
+        "amount": "3750000",
+        "block_hash": "0x89ecc5bf1a1bac4cb59ba29b53cfed7d9db71586ee0bdacbea225904741025f3",
+        "block_number": 9,
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "log_index": 0,
+        "to": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+        "token": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+        "transaction_hash": "0x5e7ddbfb1dd0364e12f0837d0306b40ff6361067ecbd6929f6dec65ab508b6e1"
+      }
+    ]
+  },
+  "certificate_verified": false,
+  "status": "valid",
+  "verification_scope": "Internal content consistency only: schema, query identity, snapshot binding, canonical events, count, exact uint256 total and logs digest. No network requests or committee-signature verification."
+}

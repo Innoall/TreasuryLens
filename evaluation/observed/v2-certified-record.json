@@ -1,0 +1,28 @@
+{
+  "certifiers": [
+    "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+    "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+    "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+  ],
+  "query": {
+    "chain_id": 31337,
+    "from_block": 6,
+    "rule_version": 1,
+    "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+    "to_block": 10,
+    "token": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+    "treasury": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+  },
+  "summary": {
+    "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+    "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+    "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+    "total": "7500000",
+    "transfer_count": 3
+  },
+  "supporters": [
+    "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+    "Node-oq2lcra5u4ksufzsv2ciqbl56dkp5c653ikzkx3lh62tai566d7dseia",
+    "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+  ]
+}

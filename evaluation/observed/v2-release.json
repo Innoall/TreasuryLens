@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-12",
+  "kind": "automated-release-checks",
+  "rust_tests_passed": 48,
+  "client_logic_tests_passed": 19,
+  "normal_integration_passed": 9,
+  "replay_api_passed": 14,
+  "consumer_passed": 4,
+  "separate_test_build_fault_passed": 14,
+  "hosted_asset_sha256": {
+    "index.html": "fa74a77d777ab0edbfbc083bd4a84c0487aea576df99b2b494a8ea462afe9394",
+    "app.js": "60f0f2d96d34f031b5a38b4727ac19031e629dad9c63ced97653a9b4d67eb0ad",
+    "style.css": "643e1930caf962487b0b74a0f9a8385618ff190389a660de346d932833edf14c",
+    "client-math.js": "6ed822f0eba3619916a55df2f2acb30a627a72044fa343f158094a6dd3032313"
+  },
+  "browser_visual_interaction_verified": false,
+  "outside_team_users_tested": false,
+  "notes": "Local browser control disabled in Work settings. Actual observed records retained, including initial failures."
+}

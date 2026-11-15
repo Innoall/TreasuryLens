@@ -1,0 +1,163 @@
+{
+  "kind": "real-lyquid-source-replay-and-supplied-content-checks",
+  "created_at": "2026-11-12T12:13:26.299732+00:00",
+  "app": "Lyquid-xydh5ecomgg2rukd7qbw6gjv7cuf4uiktzbaa",
+  "source_query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+  "tests": [
+    {
+      "case": "replay_matches_certified_exact_summary_and_breakdowns",
+      "passed": true,
+      "elapsed_ms": 2.56,
+      "evidence": {
+        "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+        "summary": {
+          "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+          "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+          "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+          "total": "7500000",
+          "transfer_count": 3
+        },
+        "recipient_count": 3,
+        "block_count": 3,
+        "top_recipient_share_bps": 5000,
+        "token_metadata": {
+          "block_number": 10,
+          "decimals": 6,
+          "scope": "source-rpc-not-certified",
+          "token": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9"
+        }
+      }
+    },
+    {
+      "case": "revalidate_current_endpoint_preserves_record",
+      "passed": true,
+      "elapsed_ms": 1.16,
+      "evidence": {
+        "checked_at_ms": 1794485606245,
+        "confirmations_now": 48,
+        "current_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+        "expected_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+        "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+        "status": "canonical",
+        "warning": "Single-source endpoint-hash check only; two successor blocks are a depth heuristic, not strong finality. The stored certificate is unchanged."
+      }
+    },
+    {
+      "case": "exported_contents_verify_without_certificate_claim",
+      "passed": true,
+      "elapsed_ms": 0.95,
+      "evidence": {
+        "status": "valid",
+        "certificate_verified": false,
+        "error": null
+      }
+    },
+    {
+      "case": "tampered_total_rejected",
+      "passed": true,
+      "elapsed_ms": 0.79,
+      "evidence": {
+        "status": "invalid",
+        "certificate_verified": false,
+        "error": "evidence logs do not reproduce the expected summary"
+      }
+    },
+    {
+      "case": "tampered_digest_rejected",
+      "passed": true,
+      "elapsed_ms": 0.81,
+      "evidence": {
+        "status": "invalid",
+        "certificate_verified": false,
+        "error": "evidence logs do not reproduce the expected summary"
+      }
+    },
+    {
+      "case": "tampered_event_rejected",
+      "passed": true,
+      "elapsed_ms": 0.85,
+      "evidence": {
+        "status": "invalid",
+        "certificate_verified": false,
+        "error": "evidence logs do not reproduce the expected summary"
+      }
+    },
+    {
+      "case": "unsupported_evidence_schema_rejected",
+      "passed": true,
+      "elapsed_ms": 0.77,
+      "evidence": {
+        "status": "invalid",
+        "certificate_verified": false,
+        "error": "unsupported evidence schema_version"
+      }
+    },
+    {
+      "case": "unknown_provenance_fields_rejected_without_certificate_claim",
+      "passed": true,
+      "elapsed_ms": 0.8,
+      "evidence": {
+        "http_status": 400,
+        "status": "invalid",
+        "certificate_verified": false
+      }
+    },
+    {
+      "case": "oversized_evidence_rejected",
+      "passed": true,
+      "elapsed_ms": 43.44,
+      "evidence": {
+        "http_status": 413,
+        "status": "invalid"
+      }
+    },
+    {
+      "case": "unknown_record_audit_unavailable",
+      "passed": true,
+      "elapsed_ms": 1.03,
+      "evidence": {
+        "http_status": 404,
+        "error": "no retained certified result"
+      }
+    },
+    {
+      "case": "unknown_record_revalidation_unavailable",
+      "passed": true,
+      "elapsed_ms": 0.89,
+      "evidence": {
+        "http_status": 404,
+        "error": "no retained certified result"
+      }
+    },
+    {
+      "case": "malformed_evidence_json_rejected",
+      "passed": true,
+      "elapsed_ms": 0.98,
+      "evidence": {
+        "http_status": 400,
+        "status": "invalid"
+      }
+    },
+    {
+      "case": "invalid_audit_query_id_rejected",
+      "passed": true,
+      "elapsed_ms": 0.91,
+      "evidence": {
+        "http_status": 400,
+        "error": "hash requires 0x prefix"
+      }
+    },
+    {
+      "case": "audit_and_revalidation_do_not_mutate_certified_record",
+      "passed": true,
+      "elapsed_ms": 0.97,
+      "evidence": {
+        "record_unchanged": true,
+        "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f"
+      }
+    }
+  ],
+  "passed": 14,
+  "total": 14,
+  "scope": "Source replay/current-endpoint/content reconstruction; no new committee certificate or signature verification."
+}

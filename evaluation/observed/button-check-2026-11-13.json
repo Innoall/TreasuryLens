@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-13",
+  "timezone": "Asia/Hong_Kong",
+  "kind": "chrome-native-ui-and-regression-check",
+  "browser": "Google Chrome",
+  "url": "http://127.0.0.1:8080/",
+  "hosted_assets_match_source": true,
+  "hosted_asset_sha256": {
+    "index.html": "30fce85244f3646d618a540e039ea35daab7929b1bd60bcc427cb17913e579a7",
+    "app.js": "e64e602e57c47f0006e8fee0afc1f142afb0a31a9563e3f125b4505f03234da9",
+    "style.css": "b0e5ad2d672027382cac020eb384b4056b5c74529b514720eb889d226d7d7e48",
+    "client-math.js": "6ed822f0eba3619916a55df2f2acb30a627a72044fa343f158094a6dd3032313"
+  },
+  "checks": {
+    "latest_fetches_new_head": {
+      "passed": true,
+      "observed_heads": [
+        22,
+        23
+      ],
+      "observed_ranges": [
+        [
+          20,
+          20
+        ],
+        [
+          21,
+          21
+        ]
+      ]
+    },
+    "latest_loading_disables_preset_and_submit": true,
+    "latest_timeout_preserves_range_and_reports_inline": true,
+    "network_timeout_marks_unavailable_and_retry_recovers": true,
+    "seed_restores_interval_after_reversed_range_error": true,
+    "future_block_reports_successor_requirement": true,
+    "business_error_preserves_connection_and_query_recovery": true,
+    "real_query_confirmed_total": "7500000",
+    "real_query_transfer_count": 3,
+    "replay_and_snapshot_recheck": true,
+    "recipient_filter_clear_and_empty_state": true,
+    "event_dialog_copy_feedback_visible": true,
+    "lab_change_preserves_keyboard_focus": true,
+    "downloaded_evidence_content_valid": true,
+    "downloaded_certificate_verified": false,
+    "downloaded_csv_rows": 3,
+    "downloaded_csv_total": "7500000",
+    "downloaded_csv_matches_recomputed_events": true
+  },
+  "downloaded_files": {
+    "treasurylens-evidence-8ac089f3b700.json": {
+      "bytes": 2474,
+      "sha256": "865ae4dc2c97809ac238784c90567fa0d7e7b944b50b2c8bbb0c22aa24dd48ab"
+    },
+    "treasurylens-events-8ac089f3b700.csv": {
+      "bytes": 966,
+      "sha256": "6e0edddeade1247a5222018fa351365ecafc61f50b812dcff11dd5ea6697f2ed"
+    }
+  },
+  "automated_checks": {
+    "client_logic": 19,
+    "production_integration": 10,
+    "evidence_api": 14
+  },
+  "not_browser_verified": [
+    "file_import_upload",
+    "clearing_existing_preferences",
+    "mobile_narrow_layout",
+    "ledger_pagination_over_20_events",
+    "storage_failure",
+    "editing_interval_during_pending_fetch"
+  ],
+  "outside_team_users_tested": false,
+  "notes": "Desktop Chrome interaction pass with native window control. Some exceptional paths additionally checked in isolated execution; not a complete cross-browser or external-user acceptance."
+}

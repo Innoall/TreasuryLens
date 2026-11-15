@@ -1,0 +1,50 @@
+{
+  "kind": "real-cross-lyquid-read",
+  "monitor": "0x4826533b4897376654bb4d4ad88b7fafd0c98528",
+  "source": "Lyquid-ahjg4huwvban3bvhxue7rcbaw4mnltwyolhqa",
+  "tests": [
+    {
+      "case": "above_budget",
+      "passed": true,
+      "result": {
+        "budget": "7499999",
+        "budget_exceeded": true,
+        "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+        "status": "confirmed",
+        "total": "7500000"
+      }
+    },
+    {
+      "case": "equal_budget",
+      "passed": true,
+      "result": {
+        "budget": "7500000",
+        "budget_exceeded": false,
+        "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+        "status": "confirmed",
+        "total": "7500000"
+      }
+    },
+    {
+      "case": "below_budget",
+      "passed": true,
+      "result": {
+        "budget": "7500001",
+        "budget_exceeded": false,
+        "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+        "status": "confirmed",
+        "total": "7500000"
+      }
+    },
+    {
+      "case": "missing_query_rejected",
+      "passed": true,
+      "result": {
+        "budget": "1",
+        "error": "no retained certified source result",
+        "query_id": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "status": "rejected"
+      }
+    }
+  ]
+}

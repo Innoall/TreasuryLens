@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-13",
+  "timezone": "Asia/Hong_Kong",
+  "kind": "chart-layout-review",
+  "browser": "Google Chrome native window",
+  "layouts": [
+    "desktop",
+    "device toolbar 390 CSS px"
+  ],
+  "charts_visually_checked": [
+    "recipient distribution",
+    "gross outflow by source block",
+    "interval comparison",
+    "budget threshold meter"
+  ],
+  "observations": {
+    "recipient_labels_and_tracks_do_not_overlap": true,
+    "block_labels_in_document_flow": true,
+    "comparison_amounts_and_bars_on_separate_rows": true,
+    "budget_uint256_max_wraps_in_narrow_layout": true,
+    "single_block_one_centered_label": {
+      "interval": [
+        7,
+        7
+      ],
+      "events": 1,
+      "total": "1250000"
+    },
+    "restored_desktop_seeded_record_and_matched_replay": true
+  },
+  "implementation_review_only": [
+    "zero value and tiny block markers above baseline",
+    "sub-0.01-percent recipient labels",
+    "relative budget slider disabled for zero total"
+  ],
+  "client_logic_checks_passed": 19,
+  "hosted_assets_match_source": true,
+  "hosted_asset_sha256": {
+    "index.html": "30fce85244f3646d618a540e039ea35daab7929b1bd60bcc427cb17913e579a7",
+    "app.js": "5b0d01c1daea3746f99aad910598fdfb7ef84a0aff43bc33a43e33815ba622fb",
+    "style.css": "8eaaecb7e586564ea633e009a8c5325113dbc4011ee0167ff7f22d03cab75ef6",
+    "client-math.js": "6ed822f0eba3619916a55df2f2acb30a627a72044fa343f158094a6dd3032313"
+  },
+  "scope": "Actual desktop and 390px Chrome observations with local chain records; no claim of exhaustive device coverage."
+}

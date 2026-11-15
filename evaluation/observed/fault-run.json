@@ -1,0 +1,349 @@
+{
+  "kind": "real-four-node-devnet-integration",
+  "test_controls": true,
+  "deployment": {
+    "schema_version": 1,
+    "created_at": "2026-11-11T04:31:13.186421+00:00",
+    "lyquid_id": "Lyquid-zz2juejwa3xj5cx6jqespjhlzzr7bjchoi7aa",
+    "contract": "0x67d269191c92caf3cd7723f116c85e6e9bf55933",
+    "target": "0xce749A113606ee9E8afE4C0927A4ebCe63F0a447",
+    "manifest": "lyquids/treasurylens-test/Cargo.toml",
+    "endpoint": "ws://127.0.0.1:10087/ws",
+    "rpc_url": "http://127.0.0.1:8545",
+    "node_endpoints": [
+      "ws://127.0.0.1:10087/ws",
+      "ws://127.0.0.1:11087/ws",
+      "ws://127.0.0.1:12087/ws",
+      "ws://127.0.0.1:13087/ws"
+    ],
+    "committee": [
+      "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+      "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+      "Node-oq2lcra5u4ksufzsv2ciqbl56dkp5c653ikzkx3lh62tai566d7dseia",
+      "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+    ],
+    "threshold": 3,
+    "epoch": 1,
+    "defaults": {
+      "chain_id": 31337,
+      "token": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+      "treasury": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+      "from_block": 10,
+      "to_block": 14,
+      "budget": "6000000"
+    },
+    "trusted_setup": "Initializer-authorized 3-of-4 committee activated and checked on all four nodes."
+  },
+  "seed": {
+    "schema_version": 1,
+    "chain_id": 31337,
+    "rpc_url": "http://127.0.0.1:8545",
+    "token": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+    "treasury": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+    "decimals": 6,
+    "from_block": 10,
+    "to_block": 14,
+    "snapshot_hash": "0x3a2e9340f124e3fcaa5ccd8b0eff599d0985eaad8da55b2e8fef53e771530706",
+    "from_block_hash": "0x0207c84708ebb78a1a73783f9f68589c9ea8308269c4c2f30fbda3b77a4a498f",
+    "budget": "6000000",
+    "expected_total": "7500000",
+    "expected_count": 3,
+    "expected_budget_exceeded": true,
+    "transactions": [
+      {
+        "label": "inbound_excluded",
+        "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "to": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "amount": "500000",
+        "transaction_hash": "0x1bff915512bfb0b2d1962dc8e014d602dd4a18d40e626f66725dd249b2f7ae12",
+        "block_number": 10
+      },
+      {
+        "label": "outbound_1",
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "to": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "amount": "1250000",
+        "transaction_hash": "0x125b392064e37cac34c8a924a98d552e32f4d0154f653ddabc5cf126e81ec30e",
+        "block_number": 11
+      },
+      {
+        "label": "outbound_2",
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "to": "0x90f79bf6eb2c4f870365e785982e1f101e93b906",
+        "amount": "2500000",
+        "transaction_hash": "0x07041c1cae63a5f6d865024c725cd802623e6fe16a7fd243255e0ae56017eb0f",
+        "block_number": 12
+      },
+      {
+        "label": "outbound_3",
+        "from": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+        "to": "0x15d34aaf54267db7d7c367839aaf71a00a2c6a65",
+        "amount": "3750000",
+        "transaction_hash": "0x5939411c4305e84224ed83416db949d7f04542ecbb99ae26eb4c1637adc34117",
+        "block_number": 13
+      },
+      {
+        "label": "unrelated_excluded",
+        "from": "0x70997970c51812dc3a010c7d01b50e0d17dc79c8",
+        "to": "0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc",
+        "amount": "111111",
+        "transaction_hash": "0xaff6ca1e91761e8a6875ababd83116692765d1c955b4dd1dcf5d427d4d301c93",
+        "block_number": 14
+      }
+    ],
+    "setup": {
+      "deployment_transaction": "0x6d83408b0346e1d079580aed536e82078862c59c3c3915af26be8b0324bb856a",
+      "funding_transaction": "0x85e8d5e74a50cededb6fab892e47f716f10a40bb1dddd26527bda6635b0368a7",
+      "supply": "1000000000"
+    },
+    "assumptions": "Local standard ERC-20; gross outbound Transfer sum in an inclusive block interval. Known expected values are independent of the production indexer implementation."
+  },
+  "tests": [
+    {
+      "case": "four_node_committee_active",
+      "passed": true,
+      "elapsed_ms": 11.48,
+      "evidence": {
+        "active": true,
+        "app": "TreasuryLens",
+        "chain_id": 31337,
+        "committee": [
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-oq2lcra5u4ksufzsv2ciqbl56dkp5c653ikzkx3lh62tai566d7dseia"
+        ],
+        "confirmations": 2,
+        "defaults": {
+          "budget": "6000000",
+          "from_block": 10,
+          "to_block": 14,
+          "token": "0xa513e6e4b8f2a923d98304ec87f64353c4d5c853",
+          "treasury": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+        },
+        "latest_block": 55,
+        "lyquid_id": "Lyquid-zz2juejwa3xj5cx6jqespjhlzzr7bjchoi7aa",
+        "result_retention": 200,
+        "test_controls": true,
+        "threshold": 3
+      }
+    },
+    {
+      "case": "known_outflow_excludes_inbound_and_unrelated",
+      "passed": true,
+      "elapsed_ms": 285.54,
+      "evidence": {
+        "query_id": "0xa1add7eb245e70d6b4d7ee291ad6118a07dac912de6fcbf762231ab02874bf94",
+        "summary": {
+          "logs_digest": "0x9f66205a9e5a84bbda613bf46d6eebf506e5ad4e14f609a90de07655c386f138",
+          "query_id": "0xa1add7eb245e70d6b4d7ee291ad6118a07dac912de6fcbf762231ab02874bf94",
+          "snapshot_hash": "0x3a2e9340f124e3fcaa5ccd8b0eff599d0985eaad8da55b2e8fef53e771530706",
+          "total": "7500000",
+          "transfer_count": 3
+        },
+        "supporters": [
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-oq2lcra5u4ksufzsv2ciqbl56dkp5c653ikzkx3lh62tai566d7dseia",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ],
+        "certifiers": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ]
+      }
+    },
+    {
+      "case": "idempotent_query",
+      "passed": true,
+      "elapsed_ms": 4.43,
+      "evidence": {
+        "query_id": "0xa1add7eb245e70d6b4d7ee291ad6118a07dac912de6fcbf762231ab02874bf94",
+        "summary": {
+          "logs_digest": "0x9f66205a9e5a84bbda613bf46d6eebf506e5ad4e14f609a90de07655c386f138",
+          "query_id": "0xa1add7eb245e70d6b4d7ee291ad6118a07dac912de6fcbf762231ab02874bf94",
+          "snapshot_hash": "0x3a2e9340f124e3fcaa5ccd8b0eff599d0985eaad8da55b2e8fef53e771530706",
+          "total": "7500000",
+          "transfer_count": 3
+        },
+        "supporters": [
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-oq2lcra5u4ksufzsv2ciqbl56dkp5c653ikzkx3lh62tai566d7dseia",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ],
+        "certifiers": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ]
+      }
+    },
+    {
+      "case": "empty_interval_confirms_zero",
+      "passed": true,
+      "elapsed_ms": 285.35,
+      "evidence": {
+        "query_id": "0xd054384ed1b08ed288273da6f93a633b9d640c4e94696923c551d52cafbecffa",
+        "summary": {
+          "logs_digest": "0x3a5c88eee64360486a0c6ad13511514b470dfb5a10fe44773e2b1cfb04641fc8",
+          "query_id": "0xd054384ed1b08ed288273da6f93a633b9d640c4e94696923c551d52cafbecffa",
+          "snapshot_hash": "0x7e2a4ff6a500474ec3697ccdc91b370e961906f9acbb4f424d9105297a2378c9",
+          "total": "0",
+          "transfer_count": 0
+        },
+        "supporters": [
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-oq2lcra5u4ksufzsv2ciqbl56dkp5c653ikzkx3lh62tai566d7dseia",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ],
+        "certifiers": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ]
+      }
+    },
+    {
+      "case": "invalid_address_rejected",
+      "passed": true,
+      "elapsed_ms": 2.17,
+      "evidence": {
+        "error": "address requires 0x prefix",
+        "status": "failed"
+      }
+    },
+    {
+      "case": "reversed_range_rejected",
+      "passed": true,
+      "elapsed_ms": 1.9,
+      "evidence": {
+        "error": "from_block must not exceed to_block",
+        "status": "failed"
+      }
+    },
+    {
+      "case": "noncontract_token_rejected",
+      "passed": true,
+      "elapsed_ms": 2.61,
+      "evidence": {
+        "error": "Host runtime: no token contract at snapshot",
+        "status": "failed"
+      }
+    },
+    {
+      "case": "initializer_only_configuration",
+      "passed": true,
+      "elapsed_ms": 72.26,
+      "evidence": {
+        "unauthorized_change_rejected": true
+      }
+    },
+    {
+      "case": "plain_commit_route_unavailable",
+      "passed": true,
+      "elapsed_ms": 11.53,
+      "evidence": {
+        "plain_eth_commit_not_exported": true
+      }
+    },
+    {
+      "case": "one_wrong_total_three_correct",
+      "passed": true,
+      "elapsed_ms": 413.34,
+      "evidence": {
+        "query_id": "0x370a2674accf5bdeb420ec71fed7c2f07a766ad7711f057f4d2e545302b7dbc7",
+        "summary": {
+          "logs_digest": "0x9f66205a9e5a84bbda613bf46d6eebf506e5ad4e14f609a90de07655c386f138",
+          "query_id": "0x370a2674accf5bdeb420ec71fed7c2f07a766ad7711f057f4d2e545302b7dbc7",
+          "snapshot_hash": "0x35e2e96d2c9f40740ec3421783ba0f65e61d7477b784891ae7094f14b2888528",
+          "total": "7500000",
+          "transfer_count": 3
+        },
+        "supporters": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ],
+        "certifiers": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ]
+      }
+    },
+    {
+      "case": "one_stale_snapshot_three_current",
+      "passed": true,
+      "elapsed_ms": 433.55,
+      "evidence": {
+        "query_id": "0x38e52394fb6166d3b1444ad38705932685b73e60b216ab026264a26c233caece",
+        "summary": {
+          "logs_digest": "0x9f66205a9e5a84bbda613bf46d6eebf506e5ad4e14f609a90de07655c386f138",
+          "query_id": "0x38e52394fb6166d3b1444ad38705932685b73e60b216ab026264a26c233caece",
+          "snapshot_hash": "0xb6620e1ffad3576af6ee39710ec44a0940adac086210b12c7f73d7083eae23cd",
+          "total": "7500000",
+          "transfer_count": 3
+        },
+        "supporters": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ],
+        "certifiers": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ]
+      }
+    },
+    {
+      "case": "one_unavailable_three_available",
+      "passed": true,
+      "elapsed_ms": 412.82,
+      "evidence": {
+        "query_id": "0xa5c2b8268658f87784bfc95d1887892d139c0dde43a800ee061fd9279050eb40",
+        "summary": {
+          "logs_digest": "0x9f66205a9e5a84bbda613bf46d6eebf506e5ad4e14f609a90de07655c386f138",
+          "query_id": "0xa5c2b8268658f87784bfc95d1887892d139c0dde43a800ee061fd9279050eb40",
+          "snapshot_hash": "0x67b6fbd601b0dc98c286f159faf65d3694e66d994d85ff21e589453250df4b52",
+          "total": "7500000",
+          "transfer_count": 3
+        },
+        "supporters": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-j3fcdy5twah7csa6pr4jhgxcvszycxdms2hsen5m7lrvtezqlv52cqaa",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ],
+        "certifiers": [
+          "Node-2folhfgf4kuyfdenaq3l4dnamv7yxrnqq3zbp64thfa5esqgxhv6wzqa",
+          "Node-oq2lcra5u4ksufzsv2ciqbl56dkp5c653ikzkx3lh62tai566d7dseia",
+          "Node-ve3tav5jw5ico7or34gcb6ni7rtmd35uokriuijygabd3tsltd7fj6ia"
+        ]
+      }
+    },
+    {
+      "case": "two_unavailable_no_quorum",
+      "passed": true,
+      "elapsed_ms": 140.81,
+      "evidence": {
+        "elapsed_ms": 6,
+        "error": "committee responses contain no matching 3-node result for this snapshot",
+        "query_id": "0x6396bff195942cb155c28ba5e3ee17de98132b3f4d9d17a9a57412de2958f31f",
+        "status": "failed"
+      }
+    },
+    {
+      "case": "two_wrong_totals_no_matching_quorum",
+      "passed": true,
+      "elapsed_ms": 132.82,
+      "evidence": {
+        "elapsed_ms": 6,
+        "error": "committee responses contain no matching 3-node result for this snapshot",
+        "query_id": "0x776a04274898d9f8c4a8a8de5bc51739c9555735c8ee3a2ebf531fb0016d9616",
+        "status": "failed"
+      }
+    }
+  ],
+  "passed": 14,
+  "total": 14
+}

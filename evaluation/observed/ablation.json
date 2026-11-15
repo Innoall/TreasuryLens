@@ -1,0 +1,565 @@
+{
+  "definitions": {
+    "amount_correct": "An accepted amount equals the supplied source amount; false on rejection does not mean an incorrect amount was returned.",
+    "evidence_boundary": "Input is a caller-supplied persisted record; this binary checks schema/bindings, not its committee certificate. All node observations below are synthetic policy inputs, not live nodes or signatures.",
+    "hardened_quorum3": "The existing select_quorum policy requires three distinct matching complete summaries bound to the requested query and snapshot.",
+    "incorrect_accept": "Accepted and amount_correct is false.",
+    "scope": "Deterministic utility/safety comparison only; no network timing, throughput, empirical failure frequency, real Byzantine-node behavior or global novelty is claimed.",
+    "single_node": "Node0 accepts its own observation without a quorum or source binding check.",
+    "snapshot_safe": "An accepted output has variant-required support matching every source summary field: one for single_node and three for each quorum variant. Numerical agreement alone is insufficient. False on rejection is not an unsafe acceptance.",
+    "stale_model": "One or two observations use a different snapshot and its coherently recomputed query ID while retaining identical totals/count/event digest to isolate snapshot binding.",
+    "totals_only_majority3": "Three distinct identities agree on total and transfer count; query ID, snapshot and log digest are ignored by the acceptance policy.",
+    "unsafe_accept": "Accepted and snapshot_safe is false."
+  },
+  "kind": "deterministic-fault-model-ablation",
+  "scenarios": [
+    {
+      "name": "honest4",
+      "observations": [
+        {
+          "node_id": "node0",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node1",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node2",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node3",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        }
+      ],
+      "synthetic": true,
+      "variants": {
+        "hardened_quorum3": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 4,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": true,
+          "supporting_nodes": [
+            "node0",
+            "node1",
+            "node2",
+            "node3"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": false
+        },
+        "single_node": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 1,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": true,
+          "supporting_nodes": [
+            "node0"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": false
+        },
+        "totals_only_majority3": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 4,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": true,
+          "supporting_nodes": [
+            "node0",
+            "node1",
+            "node2",
+            "node3"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": false
+        }
+      }
+    },
+    {
+      "name": "proposer_wrong_total",
+      "observations": [
+        {
+          "node_id": "node0",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500001",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node1",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node2",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node3",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        }
+      ],
+      "synthetic": true,
+      "variants": {
+        "hardened_quorum3": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 3,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": true,
+          "supporting_nodes": [
+            "node1",
+            "node2",
+            "node3"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": false
+        },
+        "single_node": {
+          "accepted": true,
+          "amount_correct": false,
+          "current_record_supporters": 0,
+          "incorrect_accept": true,
+          "rejection_reason": null,
+          "snapshot_safe": false,
+          "supporting_nodes": [
+            "node0"
+          ],
+          "total": "7500001",
+          "transfer_count": 3,
+          "unsafe_accept": true
+        },
+        "totals_only_majority3": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 3,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": true,
+          "supporting_nodes": [
+            "node1",
+            "node2",
+            "node3"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": false
+        }
+      }
+    },
+    {
+      "name": "2wrong_total",
+      "observations": [
+        {
+          "node_id": "node0",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500001",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node1",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500001",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node2",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node3",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        }
+      ],
+      "synthetic": true,
+      "variants": {
+        "hardened_quorum3": {
+          "accepted": false,
+          "amount_correct": false,
+          "current_record_supporters": 0,
+          "incorrect_accept": false,
+          "rejection_reason": "fewer than three distinct matching query-bound summaries",
+          "snapshot_safe": false,
+          "supporting_nodes": [],
+          "total": null,
+          "transfer_count": null,
+          "unsafe_accept": false
+        },
+        "single_node": {
+          "accepted": true,
+          "amount_correct": false,
+          "current_record_supporters": 0,
+          "incorrect_accept": true,
+          "rejection_reason": null,
+          "snapshot_safe": false,
+          "supporting_nodes": [
+            "node0"
+          ],
+          "total": "7500001",
+          "transfer_count": 3,
+          "unsafe_accept": true
+        },
+        "totals_only_majority3": {
+          "accepted": false,
+          "amount_correct": false,
+          "current_record_supporters": 0,
+          "incorrect_accept": false,
+          "rejection_reason": "fewer than three distinct matching total/count responses",
+          "snapshot_safe": false,
+          "supporting_nodes": [],
+          "total": null,
+          "transfer_count": null,
+          "unsafe_accept": false
+        }
+      }
+    },
+    {
+      "name": "one_stale_snapshot",
+      "observations": [
+        {
+          "node_id": "node0",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0x4b1dc52c7199df59d0f9095f5a4bfbc9d6f6e13790d9b5787684b00d19155efc",
+            "snapshot_hash": "0xa8fd19f90c7a7c28892ba778b96956aee24cb6c71a889aa6edb23f3765de6d37",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node1",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node2",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node3",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        }
+      ],
+      "synthetic": true,
+      "variants": {
+        "hardened_quorum3": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 3,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": true,
+          "supporting_nodes": [
+            "node1",
+            "node2",
+            "node3"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": false
+        },
+        "single_node": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 0,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": false,
+          "supporting_nodes": [
+            "node0"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": true
+        },
+        "totals_only_majority3": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 3,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": true,
+          "supporting_nodes": [
+            "node0",
+            "node1",
+            "node2",
+            "node3"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": false
+        }
+      }
+    },
+    {
+      "name": "two_stale_snapshots",
+      "observations": [
+        {
+          "node_id": "node0",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0x4b1dc52c7199df59d0f9095f5a4bfbc9d6f6e13790d9b5787684b00d19155efc",
+            "snapshot_hash": "0xa8fd19f90c7a7c28892ba778b96956aee24cb6c71a889aa6edb23f3765de6d37",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node1",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0x4b1dc52c7199df59d0f9095f5a4bfbc9d6f6e13790d9b5787684b00d19155efc",
+            "snapshot_hash": "0xa8fd19f90c7a7c28892ba778b96956aee24cb6c71a889aa6edb23f3765de6d37",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node2",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node3",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        }
+      ],
+      "synthetic": true,
+      "variants": {
+        "hardened_quorum3": {
+          "accepted": false,
+          "amount_correct": false,
+          "current_record_supporters": 0,
+          "incorrect_accept": false,
+          "rejection_reason": "fewer than three distinct matching query-bound summaries",
+          "snapshot_safe": false,
+          "supporting_nodes": [],
+          "total": null,
+          "transfer_count": null,
+          "unsafe_accept": false
+        },
+        "single_node": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 0,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": false,
+          "supporting_nodes": [
+            "node0"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": true
+        },
+        "totals_only_majority3": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 2,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": false,
+          "supporting_nodes": [
+            "node0",
+            "node1",
+            "node2",
+            "node3"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": true
+        }
+      }
+    },
+    {
+      "name": "two_missing",
+      "observations": [
+        {
+          "node_id": "node0",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        },
+        {
+          "node_id": "node1",
+          "summary": {
+            "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+            "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+            "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+            "total": "7500000",
+            "transfer_count": 3
+          }
+        }
+      ],
+      "synthetic": true,
+      "variants": {
+        "hardened_quorum3": {
+          "accepted": false,
+          "amount_correct": false,
+          "current_record_supporters": 0,
+          "incorrect_accept": false,
+          "rejection_reason": "fewer than three distinct matching query-bound summaries",
+          "snapshot_safe": false,
+          "supporting_nodes": [],
+          "total": null,
+          "transfer_count": null,
+          "unsafe_accept": false
+        },
+        "single_node": {
+          "accepted": true,
+          "amount_correct": true,
+          "current_record_supporters": 1,
+          "incorrect_accept": false,
+          "rejection_reason": null,
+          "snapshot_safe": true,
+          "supporting_nodes": [
+            "node0"
+          ],
+          "total": "7500000",
+          "transfer_count": 3,
+          "unsafe_accept": false
+        },
+        "totals_only_majority3": {
+          "accepted": false,
+          "amount_correct": false,
+          "current_record_supporters": 0,
+          "incorrect_accept": false,
+          "rejection_reason": "fewer than three distinct matching total/count responses",
+          "snapshot_safe": false,
+          "supporting_nodes": [],
+          "total": null,
+          "transfer_count": null,
+          "unsafe_accept": false
+        }
+      }
+    }
+  ],
+  "source": {
+    "query": {
+      "chain_id": 31337,
+      "from_block": 6,
+      "rule_version": 1,
+      "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+      "to_block": 10,
+      "token": "0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9",
+      "treasury": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+    },
+    "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+    "summary": {
+      "logs_digest": "0xdc6cccbfe8e43ccea451ca7b703d59bd92aea39bfc6a076ed385239d6f699497",
+      "query_id": "0xb1c06859af5404d1b268d72fe5fe437ce8c342d22952d615d8a19bdc6418a03f",
+      "snapshot_hash": "0x96a182964d18a4ef9da8494c24a508195c927d59b61164f45cc67ce9927cdcce",
+      "total": "7500000",
+      "transfer_count": 3
+    }
+  },
+  "threshold": 3
+}
