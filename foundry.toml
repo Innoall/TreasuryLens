@@ -1,0 +1,6 @@
+[profile.default]
+src = "contracts"
+out = ".runtime/solidity"
+cache_path = ".runtime/solidity-cache"
+solc_version = "0.8.30"
+evm_version = "paris"
